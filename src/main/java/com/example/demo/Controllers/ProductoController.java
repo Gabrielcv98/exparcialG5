@@ -8,6 +8,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.awt.print.Pageable;
 import java.util.List;
@@ -49,6 +50,12 @@ public class ProductoController {
         model.addAttribute("last", totalPage);
 
         return "producto/listar";
+    }
+
+
+    @GetMapping("/nuevo")
+    public String nuevoProductoFrm(Model model, @ModelAttribute("producto") Producto producto) {
+        return "producto/editFrm";
     }
 
 

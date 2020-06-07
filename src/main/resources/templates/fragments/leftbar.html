@@ -60,7 +60,76 @@
                 </ul>
 </nav>
 
+<nav class="navbair-default navbar-side" role="navigation" th:fragment="barraizquierda">
+    <div class="sidebar-collapse">
+        <ul class="nav" id="main-menu">
 
+            <li sec:authorize="hasAnyAuthority('administrador')">
+                <a th:href="@{/artesano/inventario}"  class=" waves-effect waves-dark"><i class="fa fa-dashboard"></i> Ver Iventario</a>
+            </li>
+            <li sec:authorize="hasAnyAuthority('administrador','gestor')">
+                <a  class=" waves-effect waves-dark"><i class="fa fa-desktop"></i> Stock</a>
+            </li>
+            <li sec:authorize="hasAnyAuthority('administrador')">
+                <a  class=" waves-effect waves-dark"><i class="fa fa-qrcode"></i> Lista de Usuarios</a>
+            </li>
+
+            <li sec:authorize="hasAnyAuthority('administrador')">
+                <a  class=" waves-effect waves-dark"><i class="fa fa-table"></i> Lista de Sedes</a>
+            </li>
+            <li sec:authorize="hasAnyAuthority('gestor' , 'registrado')">
+                <a class=" waves-effect waves-dark"><i class="fa fa-edit"></i> descripciton de productos <span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a th:href="" >Categoria</a>
+                    </li>
+                    <li>
+                        <a th:href="">Linea</a>
+                    </li>
+                    <li>
+                        <a th:href="">Producto</a>
+                    </li>
+                    <li>
+                        <a th:href="">Tamaño</a>
+                    </li>
+                    <li>
+                        <a th:href="">Tienda</a>
+                    </li>
+
+
+                </ul>
+
+            </li>
+
+
+            <li sec:authorize="hasAnyAuthority('gestor')">
+                <a href="#" class=" waves-effect waves-dark"><i class="fa fa-sitemap"></i> Ventas <span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="#">Lista de Ventas</a>
+                    </li>
+                    <li>
+                        <a href="#">Realizar Ventas</a>
+                    </li>
+
+                </ul>
+            </li>
+
+
+            <div sec:authorize="isAnonymous()" class="form-inline my-2 my-lg-0">
+                <a class="nav-link" th:href="@{/loginForm}">Iniciar Sesión</a>
+            </div>
+            <div sec:authorize="isAuthenticated()" class="form-inline my-2 my-lg-0">
+                <span th:text="|Bienvenido ${session.usuario.getNombre()} ${session.usuario.getApellido()}|"></span>
+                <form th:action="@{/logout}" method="post">
+                    <input class="btn btn-link" type="submit" value="(Cerrar Sesión)"/>
+                </form>
+            </div>
+        </ul>
+
+    </div>
+
+</nav>
 
     <div th:fragment="scriptsAbajo">
 
